@@ -48,7 +48,7 @@ class HTML extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     iterate(ast, fn, fnOptions) {
         if (!ast) return ast;
-    
+
         if (ast.tagName) {
             const element = new P5Element(ast, false, fnOptions);
             fn(element);
@@ -87,7 +87,7 @@ class HTML extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     static parse = parse5__WEBPACK_IMPORTED_MODULE_1__.parse;
     static parseFragment = parse5__WEBPACK_IMPORTED_MODULE_1__.parseFragment;
-    static serialize = parse5__WEBPACK_IMPORTED_MODULE_1__.serialize;  
+    static serialize = parse5__WEBPACK_IMPORTED_MODULE_1__.serialize;
 };
 
 class P5Element extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
@@ -161,21 +161,21 @@ class P5Element extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
         iterate(this.node, node => {
             if (node.nodeName === '#text') str += node.value;
         });
-        
+
         return str;
     };
     set textContent(val) {
-        if (!this.stream) this.node.childNodes = [ 
-            { 
-                nodeName: '#text', 
+        if (!this.stream) this.node.childNodes = [
+            {
+                nodeName: '#text',
                 value: val,
-                parentNode: this.node 
+                parentNode: this.node
             }
         ];
     };
     get nodeName() {
         return this.node.nodeName;
-    } 
+    }
     get parentNode() {
         return this.node.parentNode ? new P5Element(this.node.parentNode) : null;
     };
@@ -233,7 +233,7 @@ class TextEvent {
     };
     get nodeName() {
         return this.node.nodeName;
-    } 
+    }
     get parentNode() {
         return this.element;
     };
@@ -23478,10 +23478,10 @@ class JS extends _events_js__WEBPACK_IMPORTED_MODULE_2__["default"] {
     constructor() {
         super();
         /*
-        this.parseOptions = { 
-            allowReturnOutsideFunction: true, 
-            allowImportExportEverywhere: true, 
-            ecmaVersion: 2021, 
+        this.parseOptions = {
+            allowReturnOutsideFunction: true,
+            allowImportExportEverywhere: true,
+            ecmaVersion: 2021,
         };
         */
         this.parseOptions = {
@@ -23498,7 +23498,7 @@ class JS extends _events_js__WEBPACK_IMPORTED_MODULE_2__["default"] {
         };
         this.parse = meriyah__WEBPACK_IMPORTED_MODULE_0__.parseScript /*parse*/;
         this.generate = esotope_hammerhead__WEBPACK_IMPORTED_MODULE_1__.generate;
-    };  
+    };
     rewrite(str, data = {}) {
         return this.recast(str, data, 'rewrite');
     };
@@ -23549,7 +23549,7 @@ class JS extends _events_js__WEBPACK_IMPORTED_MODULE_2__["default"] {
             for (const child in node) {
                 if (child === 'parent') continue;
                 if (Array.isArray(node[child])) {
-                    node[child].forEach(entry => { 
+                    node[child].forEach(entry => {
                         if (entry) walk(entry, node, handler)
                     });
                 } else {
@@ -34280,7 +34280,7 @@ var StmtRawGen = {
             prevIndent = shiftIndent();
 
         _.js += 'catch' + _.optSpace;
-        
+
         if ($param) {
            _.js += '(';
            ExprGen[$param.type]($param, Preset.e5);
@@ -34294,8 +34294,8 @@ var StmtRawGen = {
         _.indent = prevIndent;
         if ($param) {
            _.js += ')';
-        } 
-     
+        }
+
         _.js += adoptionPrefix($body);
         StmtGen[$body.type]($body, Preset.s7);
     },
@@ -35181,12 +35181,12 @@ const base64 = {
         str = str.toString();
         const b64chs = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=');
         let u32;
-        let c0; 
-        let c1; 
-        let c2; 
+        let c0;
+        let c1;
+        let c2;
         let asc = '';
         let pad = str.length % 3;
-        
+
         for (let i = 0; i < str.length;) {
             if((c0 = str.charCodeAt(i++)) > 255 || (c1 = str.charCodeAt(i++)) > 255 || (c2 = str.charCodeAt(i++)) > 255)throw new TypeError('invalid character found');
             u32 = (c0 << 16) | (c1 << 8) | c2;
@@ -35195,20 +35195,20 @@ const base64 = {
                 + b64chs[u32 >> 6 & 63]
                 + b64chs[u32 & 63];
         }
-        
+
         return encodeURIComponent(pad ? asc.slice(0, pad - 3) + '==='.substr(pad) : asc);
     },
     decode(str){
         if (!str) return str;
         str = decodeURIComponent(str.toString());
         const b64tab = {"0":52,"1":53,"2":54,"3":55,"4":56,"5":57,"6":58,"7":59,"8":60,"9":61,"A":0,"B":1,"C":2,"D":3,"E":4,"F":5,"G":6,"H":7,"I":8,"J":9,"K":10,"L":11,"M":12,"N":13,"O":14,"P":15,"Q":16,"R":17,"S":18,"T":19,"U":20,"V":21,"W":22,"X":23,"Y":24,"Z":25,"a":26,"b":27,"c":28,"d":29,"e":30,"f":31,"g":32,"h":33,"i":34,"j":35,"k":36,"l":37,"m":38,"n":39,"o":40,"p":41,"q":42,"r":43,"s":44,"t":45,"u":46,"v":47,"w":48,"x":49,"y":50,"z":51,"+":62,"/":63,"=":64};
-        str = str.replace(/\s+/g, '');        
+        str = str.replace(/\s+/g, '');
         str += '=='.slice(2 - (str.length & 3));
         let u24;
         let bin = '';
         let r1;
         let r2;
-        
+
         for (let i = 0; i < str.length;) {
             u24 = b64tab[str.charAt(i++)] << 18
             | b64tab[str.charAt(i++)] << 12
@@ -35247,7 +35247,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 var $exports = {}
-    
+
 ;
 
 var extname = function(path = '') {
@@ -35513,14 +35513,14 @@ function serialize(cookies = [], meta, js) {
         str += cookie.name;
         str += '='
         str += cookie.value;
-    }; 
+    };
     return str;
 };
 
 async function getCookies(db) {
     const now = new Date();
     return (await db.getAll('cookies')).filter(cookie => {
-        
+
         let expired = false;
         if (cookie.set) {
             if (cookie.maxAge) {
@@ -35545,7 +35545,7 @@ function setCookies(data, db, meta) {
     const cookies = set_cookie_parser__WEBPACK_IMPORTED_MODULE_0__(data, {
         decodeValues: false,
     })
-    
+
     for (const cookie of cookies) {
         if (!cookie.domain) cookie.domain = '.' + meta.url.hostname;
         if (!cookie.path) cookie.path = '/';
@@ -35555,7 +35555,7 @@ function setCookies(data, db, meta) {
         };
 
         db.put('cookies', {
-            ...cookie, 
+            ...cookie,
             id: `${cookie.domain}@${cookie.path}@${cookie.name}`,
             set: new Date(Date.now()),
         });
@@ -35591,7 +35591,7 @@ function attributes(ctx, meta = ctx.meta) {
         if (attr.node.tagName === 'base' && attr.name === 'href' && attr.options.document) {
             meta.base = new URL(attr.value, meta.url);
         };
-        
+
         if (type === 'rewrite' && isUrl(attr.name, attr.tagName)) {
             attr.node.setAttribute(origPrefix + attr.name, attr.value);
             attr.value = ctx.rewriteUrl(attr.value, meta);
@@ -35605,14 +35605,14 @@ function attributes(ctx, meta = ctx.meta) {
 
         if (type === 'rewrite' && isHtml(attr.name)) {
             attr.node.setAttribute(origPrefix + attr.name, attr.value);
-            attr.value = html.rewrite(attr.value, { 
+            attr.value = html.rewrite(attr.value, {
                 ...meta,
                 document: true,
                 injectHead: attr.options.injectHead || [],
             });
         };
 
-        
+
         if (type === 'rewrite' && isStyle(attr.name)) {
             attr.node.setAttribute(origPrefix + attr.name, attr.value);
             attr.value = ctx.rewriteCSS(attr.value, { context: 'declarationList', });
@@ -35646,7 +35646,7 @@ function attributes(ctx, meta = ctx.meta) {
 
         };
         */
-    });  
+    });
 
 };
 
@@ -35750,7 +35750,7 @@ function injectHead(ctx) {
         if (type !== 'rewrite') return false;
         if (element.tagName !== 'head') return false;
         if (!('injectHead' in element.options)) return false;
-        
+
         element.childNodes.unshift(
             ...element.options.injectHead
         );
@@ -35904,9 +35904,9 @@ function property(ctx) {
                     end: node.property.end,
                 });
             };
-    
+
         };
-    
+
         if (!node.computed && node.property.name === 'location' && type === 'rewrite' || node.property.name === '__uv$location' && type === 'source') {
             data.changes.push({
                 start: node.property.start,
@@ -35951,7 +35951,7 @@ function property(ctx) {
         };
 
         if (!node.computed && node.property.name === '__uv$setSource' && type === 'source' && node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.CallExpression) {
-            const { parent, property } = node; 
+            const { parent, property } = node;
             data.changes.push({
                 start: property.start - 1,
                 end: parent.end,
@@ -36003,9 +36003,9 @@ function wrapEval(ctx) {
         if (!node.arguments.length) return false;
         if (node.callee.type !== 'Identifier') return false;
         if (node.callee.name !== 'eval') return false;
-        
+
         const [ script ] = node.arguments;
-    
+
         data.changes.push({
             node: '__uv.js.rewrite(',
             start: script.start,
@@ -36024,7 +36024,7 @@ function wrapEval(ctx) {
 function importDeclaration(ctx) {
     const { js } = ctx;
     js.on(esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.Literal, (node, data, type) => {
-        if (!((node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ImportDeclaration || node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ExportAllDeclaration || node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ExportNamedDeclaration) 
+        if (!((node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ImportDeclaration || node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ExportAllDeclaration || node.parent.type === esotope_hammerhead__WEBPACK_IMPORTED_MODULE_0__.Syntax.ExportNamedDeclaration)
         && node.parent.source === node)) return false;
 
         data.changes.push({
@@ -36075,7 +36075,7 @@ function unwrap(ctx) {
                         start: node.end - 2,
                         end: node.end,
                     });
-                }; 
+                };
                 break;
             case '$get':
             case 'rewriteUrl':
@@ -36091,7 +36091,7 @@ function unwrap(ctx) {
                         start: node.end - 1,
                         end: node.end,
                     });
-                }; 
+                };
                 break;
             case 'rewrite':
                 const [ script ] = node.arguments;
@@ -36120,7 +36120,7 @@ function isWrapped(node) {
 
 function computedProperty(parent) {
     if (!parent.computed) return false;
-    const { property: node } = parent; 
+    const { property: node } = parent;
     if (node.type === 'Literal' && !['location', 'top', 'parent']) {}
     return true;
 };
@@ -36544,7 +36544,7 @@ class UVClient extends _events_js__WEBPACK_IMPORTED_MODULE_16__["default"] {
 
         if (!!construct) {
             wrapped.prototype = fn.prototype;
-            wrapped.prototype.constructor = wrapped; 
+            wrapped.prototype.constructor = wrapped;
         };
 
         this.emit('wrap', fn, wrapped, !!construct);
@@ -36628,7 +36628,7 @@ class DocumentHook extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
             if (event.intercepted) return event.returnValue;
             return event.target.call(event.that, event.data.selectors);
-        }); 
+        });
     };
     overrideDomain() {
         this.ctx.overrideDescriptor(this.docProto, 'domain', {
@@ -36692,7 +36692,7 @@ class DocumentHook extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             if (event.intercepted) return event.returnValue;
             return event.target.apply(event.that, event.data.html);
         });
-    };  
+    };
     overrideDocumentURI() {
         this.ctx.overrideDescriptor(this.docProto, 'documentURI', {
             get: (target, that) => {
@@ -37302,7 +37302,7 @@ class HookEvent {
         this.#returnValue = input;
         this.#intercepted = true;
     };
-};  
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HookEvent);
 
@@ -37349,7 +37349,7 @@ class ElementApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
             if (event.intercepted) return event.returnValue;
             return event.target.call(event.that, event.data.selectors);
-        }); 
+        });
     };
     overrideAttribute() {
         this.ctx.override(this.elemProto, 'getAttribute', (target, that, args) => {
@@ -37476,7 +37476,7 @@ class ElementApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
         const proto = element.prototype;
 
         this.ctx.overrideDescriptor(proto, prop, handler);
-        
+
         return true;
     };
 };
@@ -37612,7 +37612,7 @@ class NodeApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
     overrideChildMethods() {
         this.ctx.override(this.nodeProto, 'removeChild')
     };
-};  
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NodeApi);
 
@@ -37657,7 +37657,7 @@ class AttrApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 return event.data.value;
             },
         });
-        
+
         this.ctx.overrideDescriptor(this.attrProto, 'value', {
             get: (target, that) => {
                 const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ name: this.name.get.call(that), value: target.call(that) }, target, that);
@@ -37840,7 +37840,7 @@ class ObjectHook extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
             const event =  new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ names: target.call(that, object) }, target, that);
             this.emit('getOwnPropertyNames', event);
- 
+
             if (event.intercepted) return event.returnValue;
             return event.data.names;
         });
@@ -37852,7 +37852,7 @@ class ObjectHook extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 
             const event =  new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ descriptors: target.call(that, object) }, target, that);
             this.emit('getOwnPropertyDescriptors', event);
- 
+
             if (event.intercepted) return event.returnValue;
             return event.data.descriptors;
         });
@@ -37952,7 +37952,7 @@ class Fetch extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
     };
     overrideHeaders() {
         if (!this.Headers) return false;
-        
+
         this.ctx.overrideDescriptor(this.reqProto, 'headers', {
             get: (target, that) => {
                 const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
@@ -37961,7 +37961,7 @@ class Fetch extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 if (event.intercepted) return event.returnValue;
 
                 return event.data.value;
-            },  
+            },
         });
 
         this.ctx.overrideDescriptor(this.resProto, 'headers', {
@@ -37972,7 +37972,7 @@ class Fetch extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 if (event.intercepted) return event.returnValue;
 
                 return event.data.value;
-            },  
+            },
         });
 
         this.ctx.override(this.headersProto, 'get', (target, that, [ name ]) => {
@@ -38092,7 +38092,7 @@ class WebSocketApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             get: (target, that) => {
                const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
                this.emit('url', event);
-               return event.data.value; 
+               return event.data.value;
             },
         });
     };
@@ -38101,7 +38101,7 @@ class WebSocketApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             get: (target, that) => {
                const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
                this.emit('protocol', event);
-               return event.data.value; 
+               return event.data.value;
             },
         });
     };
@@ -38159,11 +38159,11 @@ class Xhr extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             if (event.intercepted) return event.returnValue;
 
             return event.target.call(
-                event.that, 
-                event.data.method, 
-                event.data.input, 
-                event.data.async, 
-                event.data.user, 
+                event.that,
+                event.data.method,
+                event.data.input,
+                event.data.async,
+                event.data.user,
                 event.data.password
             );
         });
@@ -38226,7 +38226,7 @@ class Xhr extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             return event.data.value;
         });
     };
-}; 
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Xhr);
 
@@ -38279,7 +38279,7 @@ class EventSourceApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] 
             get: (target, that) => {
                const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
                this.emit('url', event);
-               return event.data.value; 
+               return event.data.value;
             },
         });
     };
@@ -38399,13 +38399,13 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
         this.workerLocProto = this.WorkerLocation ? this.WorkerLocation.prototype : {};
         this.keys = ['href', 'protocol', 'host', 'hostname', 'port', 'pathname', 'search', 'hash', 'origin'];
         this.HashChangeEvent = this.window.HashChangeEvent || null;
-        this.href = this.WorkerLocation ? ctx.nativeMethods.getOwnPropertyDescriptor(this.workerLocProto, 'href') : 
+        this.href = this.WorkerLocation ? ctx.nativeMethods.getOwnPropertyDescriptor(this.workerLocProto, 'href') :
         ctx.nativeMethods.getOwnPropertyDescriptor(this.location, 'href');
     };
     overrideWorkerLocation(parse) {
         if (!this.WorkerLocation) return false;
         const uv = this;
-        
+
         for (const key of this.keys) {
             this.ctx.overrideDescriptor(this.workerLocProto, key, {
                 get: (target, that) => {
@@ -38446,7 +38446,7 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 configurable: false,
                 enumerable: true,
             });
-        };  
+        };
 
         if ('reload' in this.location) {
             this.ctx.nativeMethods.defineProperty(emulation, 'reload', {
@@ -38464,7 +38464,7 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                     if (!args.length || that !== emulation) target.call(that);
                     that = this.location;
                     let [ input ] = args;
-                    
+
                     const url = new URL(input, emulation.href);
                     return target.call(that === emulation ? this.location : that, wrap(url.href));
                 }),
@@ -38479,7 +38479,7 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                     if (!args.length || that !== emulation) target.call(that);
                     that = this.location;
                     let [ input ] = args;
-                    
+
                     const url = new URL(input, emulation.href);
                     return target.call(that === emulation ? this.location : that, wrap(url.href));
                 }),
@@ -38487,7 +38487,7 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 enumerable: true,
             });
         };
-        
+
         if ('ancestorOrigins' in this.location) {
             this.ctx.nativeMethods.defineProperty(emulation, 'ancestorOrigins', {
                 get() {
@@ -38499,7 +38499,7 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 enumerable: true,
             });
         };
-        
+
 
         this.ctx.nativeMethods.defineProperty(emulation, 'toString', {
             value: this.ctx.wrap(this.location, 'toString', () => {
@@ -38513,11 +38513,11 @@ class LocationApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             value: () => emulation.href,
             writable: false,
             enumerable: false,
-        }); 
+        });
 
         if (this.ctx.window.Location) this.ctx.nativeMethods.setPrototypeOf(emulation, this.ctx.window.Location.prototype);
 
-        return emulation;   
+        return emulation;
     };
 };
 
@@ -38558,7 +38558,7 @@ class MessageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             let message;
             let origin;
             let transfer;
-            
+
             if (!this.ctx.worker) {
                 [ message, origin, transfer = [] ] = args;
             } else {
@@ -38578,7 +38578,7 @@ class MessageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             let message;
             let origin;
             let transfer;
-            
+
             if (!noOrigin) {
                 [ message, origin, transfer = [] ] = args;
             } else {
@@ -38598,7 +38598,7 @@ class MessageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             get: (target, that) => {
                 const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
                 this.emit('origin', event);
-                
+
                 if (event.intercepted) return event.returnValue;
                 return event.data.value;
             }
@@ -38609,7 +38609,7 @@ class MessageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             get: (target, that) => {
                 const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ value: target.call(that) }, target, that);
                 this.emit('data', event);
-                
+
                 if (event.intercepted) return event.returnValue;
                 return event.data.value;
             }
@@ -38782,7 +38782,7 @@ class URLApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             return event.target.call(event.that, event.data.url);
         });
     };
-};  
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (URLApi);
 
@@ -38871,7 +38871,7 @@ class StorageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
             get: (target, that) => {
                 const event = new _hook_js__WEBPACK_IMPORTED_MODULE_1__["default"]({ length: target.call((this.wrappers.get(that) || that)) }, target, (this.wrappers.get(that) || that));
                 this.emit('length', event);
-                
+
                 if (event.intercepted) return event.returnValue;
                 return event.data.length;
             },
@@ -38911,13 +38911,13 @@ class StorageApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
                 return delete storage[event.data.name];
             },
         });
-        
+
         this.wrappers.set(proxy, storage);
         this.ctx.nativeMethods.setPrototypeOf(proxy, this.storeProto);
 
         return proxy;
-    };  
-    
+    };
+
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StorageApi);
@@ -38932,7 +38932,7 @@ class StorageWrapper {
         this.unwrap = unwrap;
         this.origin = origin;
         this.emulation = {};
-    };   
+    };
     clear() {
         for (const key in this.storage) {
             const data = this.unwrap(key);
@@ -39045,7 +39045,7 @@ class StyleApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -39059,14 +39059,14 @@ class StyleApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -39079,12 +39079,12 @@ class StyleApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -39095,7 +39095,7 @@ class StyleApi extends _events_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -39126,10 +39126,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- 
 
 
- 
+
+
 
 
 
@@ -39138,7 +39138,7 @@ __webpack_require__.r(__webpack_exports__);
 const valid_chars = "!#$%&'*+-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ^_`abcdefghijklmnopqrstuvwxyz|~";
 const reserved_chars = "%";
 
-class Ultraviolet {
+class Violet {
     constructor(options = {}) {
         this.prefix = options.prefix || '/service/';
         this.urlRegex = /^(#|about:|data:|mailto:)/
@@ -39146,7 +39146,7 @@ class Ultraviolet {
         this.sourceUrl = options.sourceUrl || this.sourceUrl;
         this.encodeUrl = options.encodeUrl || this.encodeUrl;
         this.decodeUrl = options.decodeUrl || this.decodeUrl;
-        this.vanilla = 'vanilla' in options ? options.vanilla : false; 
+        this.vanilla = 'vanilla' in options ? options.vanilla : false;
         this.meta = options.meta || {};
         this.meta.base ||= undefined;
         this.meta.origin ||= '';
@@ -39154,7 +39154,7 @@ class Ultraviolet {
         this.handlerScript = options.handler || '/uv.handler.js';
         this.configScript = options.config || '/uv.config.js';
         this.meta.url ||= this.meta.base || '';
-        this.codec = Ultraviolet.codec;
+        this.codec = Violet.codec;
         this.html = new _html_js__WEBPACK_IMPORTED_MODULE_0__["default"](this);
         this.css = new _css_js__WEBPACK_IMPORTED_MODULE_1__["default"](this);
         this.js = new _js_js__WEBPACK_IMPORTED_MODULE_2__["default"](this);
@@ -39218,12 +39218,12 @@ class Ultraviolet {
     };
     encodeProtocol(protocol) {
         protocol = protocol.toString();
-    
+
         let result = '';
-        
+
         for(let i = 0; i < protocol.length; i++){
             const char = protocol[i];
-    
+
             if(valid_chars.includes(char) && !reserved_chars.includes(char)){
                 result += char;
             }else{
@@ -39231,28 +39231,28 @@ class Ultraviolet {
                 result += '%' + code.toString(16).padStart(2, 0);
             }
         }
-    
+
         return result;
     };
     decodeProtocol(protocol) {
         if(typeof protocol != 'string')throw new TypeError('protocol must be a string');
-    
+
         let result = '';
-        
+
         for(let i = 0; i < protocol.length; i++){
             const char = protocol[i];
-            
+
             if(char == '%'){
                 const code = parseInt(protocol.slice(i + 1, i + 3), 16);
                 const decoded = String.fromCharCode(code);
-                
+
                 result += decoded;
                 i += 2;
             }else{
                 result += char;
             }
         }
-    
+
         return result;
     }
     implementUVMiddleware() {
@@ -39296,8 +39296,8 @@ class Ultraviolet {
     static Bowser = bowser__WEBPACK_IMPORTED_MODULE_13__;
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Ultraviolet);
-if (typeof self === 'object') self.Ultraviolet = Ultraviolet;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Violet);
+if (typeof self === 'object') self.Violet = Violet;
 })();
 
 /******/ })()
