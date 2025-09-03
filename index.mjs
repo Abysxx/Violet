@@ -32,7 +32,6 @@ server.on('upgrade', (req, socket, head) => {
 });
 
 server.listen(process.env.PORT || 8080, () => {
-	console.log('[😼]: Now running Violet, a front-end for UltraViolet')
-	console.log('[😼]: Front-end made by Abysxx (github.com/abysxx)')
     console.log('[😼]: Violet running at http://localhost:8080');
 });
+
