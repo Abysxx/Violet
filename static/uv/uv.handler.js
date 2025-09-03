@@ -3,7 +3,7 @@ if (!self.__uv) {
 };
 
 async function __uvHook(window, config = {}, bare = '/bare/') {
-    if ('__uv' in window && window.__uv instanceof Ultraviolet) return false;
+    if ('__uv' in window && window.__uv instanceof Violet) return false;
 
     if (window.document && !!window.window) {
         window.document.querySelectorAll("script[__uv-script]").forEach(node => node.remove())
@@ -12,7 +12,7 @@ async function __uvHook(window, config = {}, bare = '/bare/') {
     const worker = !window.window;
     const master = '__uv';
     const methodPrefix = '__uv$';
-    const __uv = new Ultraviolet({
+    const __uv = new Violet({
         ...config,
         window,
     });
@@ -158,7 +158,7 @@ async function __uvHook(window, config = {}, bare = '/bare/') {
         methodPrefix + 'modifiedStyle',
         methodPrefix + 'config',
         methodPrefix + 'dispatched',
-        'Ultraviolet',
+        'Violet',
         '__uvHook',
     ];
 
@@ -443,7 +443,7 @@ async function __uvHook(window, config = {}, bare = '/bare/') {
             client.element.setAttribute.call(that, __uv.attributePrefix + '-attr-href', val)
             target.call(that, __uv.rewriteUrl(val));
         },
-    }); 
+    });
 
     client.element.hookProperty([HTMLScriptElement, HTMLAudioElement, HTMLVideoElement,  HTMLMediaElement, HTMLImageElement, HTMLInputElement, HTMLEmbedElement, HTMLIFrameElement, HTMLTrackElement, HTMLSourceElement], 'src', {
         get: (target, that) => {
@@ -856,12 +856,12 @@ async function __uvHook(window, config = {}, bare = '/bare/') {
                                     )
                                 },
                                 set(val) {
-                                    client.style.setProperty.call(this, 
+                                    client.style.setProperty.call(this,
                                         (client.style.propToDashed[key] || key),
                                         __uv.rewriteCSS(val, {
                                             context: 'value',
                                             ...__uv.meta
-                                        })    
+                                        })
                                     )
                                 }
                             });
@@ -911,7 +911,7 @@ async function __uvHook(window, config = {}, bare = '/bare/') {
             client.nativeMethods.defineProperty(event, methodPrefix + 'dispatched', {
                 value: true,
                 enumerable: false,
-            }); 
+            });
 
             __uv.dispatchEvent.call(window, event);
         };
