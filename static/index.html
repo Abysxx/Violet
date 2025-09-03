@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Violet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /*------------ Theme Variables ------------*/
+        :root {
+            --bg: #1a1a1d;
+            --bg-alt: #242427;
+            --text: #e5e5e5;
+            --accent: #a259ff;
+            --accent-hover: #b984ff;
+            --glowing-shadow: 0 0 12px rgba(162, 89, 255, 0.4);
+            --card-border: rgba(162, 89, 255, 0.3);
+            --features-hover: rgba(162, 89, 255, 0.15);
+        }
+
+        body{
+            background-color: var(--bg)
+        }
+
+        .content{
+            position: absolute;
+            top: calc(50% - 2.25rem);
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%); /* For older Safari/WebKit */
+            transform: translate(-50%, -50%);
+            display: flex;
+            height: 50%;
+            width: 50%;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .searchbar {
+            background-color: var(--bg-alt);
+            color: var(--text);
+            width: calc(100% - .75rem);
+            height: 2rem;
+            padding: 0.25rem 2.5rem 0.25rem 0.75rem; /* padding-right for the icon */
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: "Poppins";
+            outline: none;
+            user-select: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: calc(0px - calc(2.5rem - 1.25rem));
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: var(--accent);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .title{
+            width: calc(100% + 2.5rem);
+            color: var(--accent);
+            font-size: 3rem;
+            text-shadow: var(--glowing-shadow);
+            font-family: "Poppins";
+        }
+
+        /*------------ Footer ------------*/
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: var(--bg-alt);
+            width: 100%;
+            min-height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+            box-sizing: border-box;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.5);
+        }
+
+        .footer .footer-version {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #bbb;
+            white-space: nowrap;
+            overflow: visible;
+            font-family: "Poppins";
+        }
+
+        .footer-check-version {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--accent);
+            cursor: pointer;
+            transition: text-shadow 0.3s, color 0.3s;
+            font-family: "Poppins";
+            text-decoration: underline;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .footer .circle-logo {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--accent);
+        }
+
+        .footer .footer-text {
+            font-family: "Poppins";
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+            </style>
+</head>
+<body>
+    <div class="content">
+        <h1 class="title">Violet</h1>
+        <form>
+            <div class="search-container">
+                <input class="searchbar" placeholder="Search the web freely">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     viewBox="0 0 24 24" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     stroke-width="2" 
+                     stroke-linecap="round" 
+                     stroke-linejoin="round" 
+                     class="search-icon">
+                  <path d="m21 21-4.34-4.34"/>
+                  <circle cx="11" cy="11" r="8"/>
+                </svg>
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+        <div class="footer-left">
+            <img src="/static/pfp.jpg" alt="Logo" class="circle-logo">
+            <span class="footer-text">Made by Abyss</span>
+        </div>
+        <div class="check-container">
+            <a href="https://raw.githubusercontent.com/Abysxx/Violet/refs/heads/main/changelog.txt" class="footer-check-version">Check Version</a>
+            <!-- <a href="" class="footer-check-version">(alt)</a>-->
+        </div>
+        <span class="footer-version">Version: 0.9</span>
+    </div>
+    <!-- Ultraviolet client bundle -->
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+    // Register service worker properly
+	if ("serviceWorker" in navigator) {
+	  navigator.serviceWorker.register("/uv/uv.sw.js", { scope: "/uv/service/" });
+	}
+    </script>
+</body>
+</html>
