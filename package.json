@@ -3,9 +3,9 @@
     "@tomphttp/bare-server-node": "^1.0.2-beta-readme2",
     "node-static": "^0.7.11"
   },
-  "name": "uv-app",
+  "name": "Violet",
   "version": "1.0.0",
-  "description": "Ultraviolet instance",
+  "description": "Violet",
   "main": "index.mjs",
   "type": "module",
   "scripts": {
