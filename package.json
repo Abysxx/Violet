@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@tomphttp/bare-server-node": "^1.0.2-beta-readme2",
+    "node-static": "^0.7.11"
+  },
+  "name": "uv-app",
+  "version": "1.0.0",
+  "description": "Ultraviolet instance",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs",
+    "setup": "npm install"
+  },
+  "keywords": [
+    ""
+  ],
+  "author": "Abysxx",
+  "license": "GPL-3.0-or-later"
+}
