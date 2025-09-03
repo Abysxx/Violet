@@ -1,7 +1,7 @@
 importScripts('/uv/uv.bundle.js');
 importScripts('/uv/uv.config.js');
 
-class UVServiceWorker extends EventEmitter {     
+class UVServiceWorker extends EventEmitter {
     constructor(config = __uv$config) {
         super();
         if (!config.bare) config.bare = '/bare/';
@@ -26,7 +26,7 @@ class UVServiceWorker extends EventEmitter {
                 'x-xss-protection',
             ],
             forward: [
-                'accept-encoding', 
+                'accept-encoding',
                 'connection',
                 'content-length',
             ],
@@ -38,13 +38,13 @@ class UVServiceWorker extends EventEmitter {
             ]
         };
         this.statusCode = {
-            empty: [ 
+            empty: [
                 204,
                 304,
             ],
-        };  
+        };
         this.config = config;
-        this.browser = Ultraviolet.Bowser.getParser(self.navigator.userAgent).getBrowserName();
+        this.browser = Violet.Bowser.getParser(self.navigator.userAgent).getBrowserName();
 
         if (this.browser === 'Firefox') {
             this.headers.forward.push('user-agent');
@@ -57,41 +57,41 @@ class UVServiceWorker extends EventEmitter {
         };
         try {
 
-            const ultraviolet = new Ultraviolet(this.config);
+            const violet = new Violet(this.config);
 
             if (typeof this.config.construct === 'function') {
-                this.config.construct(ultraviolet, 'service');
+                this.config.construct(violet, 'service');
             };
 
-            const db = await ultraviolet.cookie.db();
+            const db = await violet.cookie.db();
 
-            ultraviolet.meta.origin = location.origin;
-            ultraviolet.meta.base = ultraviolet.meta.url = new URL(ultraviolet.sourceUrl(request.url));
+            violet.meta.origin = location.origin;
+            violet.meta.base = violet.meta.url = new URL(violet.sourceUrl(request.url));
 
             const requestCtx = new RequestContext(
-                request, 
-                this, 
-                ultraviolet, 
+                request,
+                this,
+                violet,
                 !this.method.empty.includes(request.method.toUpperCase()) ? await request.blob() : null
             );
 
-            if (ultraviolet.meta.url.protocol === 'blob:') {
+            if (violet.meta.url.protocol === 'blob:') {
                 requestCtx.blob = true;
                 requestCtx.base = requestCtx.url = new URL(requestCtx.url.pathname);
             };
 
             if (request.referrer && request.referrer.startsWith(location.origin)) {
-                const referer = new URL(ultraviolet.sourceUrl(request.referrer));
+                const referer = new URL(violet.sourceUrl(request.referrer));
 
-                if (requestCtx.headers.origin || ultraviolet.meta.url.origin !== referer.origin && request.mode === 'cors') {
+                if (requestCtx.headers.origin || violet.meta.url.origin !== referer.origin && request.mode === 'cors') {
                     requestCtx.headers.origin = referer.origin;
                 };
 
                 requestCtx.headers.referer = referer.href;
             };
 
-            const cookies = await ultraviolet.cookie.getCookies(db) || [];
-            const cookieStr = ultraviolet.cookie.serialize(cookies, ultraviolet.meta, false);
+            const cookies = await violet.cookie.getCookies(db) || [];
+            const cookieStr = violet.cookie.serialize(cookies, violet.meta, false);
 
             if (this.browser === 'Firefox' && !(request.destination === 'iframe' || request.destination === 'document')) {
                 requestCtx.forward.shift();
@@ -120,19 +120,19 @@ class UVServiceWorker extends EventEmitter {
 
             for (const name of this.headers.csp) {
                 if (responseCtx.headers[name]) delete responseCtx.headers[name];
-            }; 
-            
+            };
+
             if (responseCtx.headers.location) {
-                responseCtx.headers.location = ultraviolet.rewriteUrl(responseCtx.headers.location);
+                responseCtx.headers.location = violet.rewriteUrl(responseCtx.headers.location);
             };
 
             if (responseCtx.headers['set-cookie']) {
-                Promise.resolve(ultraviolet.cookie.setCookies(responseCtx.headers['set-cookie'], db, ultraviolet.meta)).then(() => {
+                Promise.resolve(violet.cookie.setCookies(responseCtx.headers['set-cookie'], db, violet.meta)).then(() => {
                     self.clients.matchAll().then(function (clients){
                         clients.forEach(function(client){
                             client.postMessage({
                                 msg: 'updateCookies',
-                                url: ultraviolet.meta.url.href,
+                                url: violet.meta.url.href,
                             });
                         });
                     });
@@ -145,31 +145,31 @@ class UVServiceWorker extends EventEmitter {
                     case 'script':
                     case 'worker':
                         responseCtx.body = `if (!self.__uv && self.importScripts) importScripts('${__uv$config.bundle}', '${__uv$config.config}', '${__uv$config.handler}');\n`;
-                        responseCtx.body += ultraviolet.js.rewrite(
+                        responseCtx.body += violet.js.rewrite(
                             await response.text()
                         );
                         break;
                     case 'style':
-                        responseCtx.body = ultraviolet.rewriteCSS(
+                        responseCtx.body = violet.rewriteCSS(
                             await response.text()
-                        ); 
+                        );
                         break;
                 case 'iframe':
                 case 'document':
-                        if (isHtml(ultraviolet.meta.url, (responseCtx.headers['content-type'] || ''))) {
-                            responseCtx.body = ultraviolet.rewriteHtml(
-                                await response.text(), 
-                                { 
+                        if (isHtml(violet.meta.url, (responseCtx.headers['content-type'] || ''))) {
+                            responseCtx.body = violet.rewriteHtml(
+                                await response.text(),
+                                {
                                     document: true ,
-                                    injectHead: ultraviolet.createHtmlInject(
-                                        this.config.handler, 
-                                        this.config.bundle, 
+                                    injectHead: violet.createHtmlInject(
+                                        this.config.handler,
+                                        this.config.bundle,
                                         this.config.config,
-                                        ultraviolet.cookie.serialize(cookies, ultraviolet.meta, true), 
+                                        violet.cookie.serialize(cookies, violet.meta, true),
                                         request.referrer
                                     )
                                 }
-                            );      
+                            );
                         };
                 };
             };
@@ -211,7 +211,7 @@ class UVServiceWorker extends EventEmitter {
     get address() {
         return this.addresses[Math.floor(Math.random() * this.addresses.length)];
     };
-    static Ultraviolet = Ultraviolet;
+    static Violet = Violet;
 };
 
 self.UVServiceWorker = UVServiceWorker;
@@ -220,14 +220,14 @@ self.UVServiceWorker = UVServiceWorker;
 class ResponseContext {
     constructor(request, response, worker) {
         const { headers, status, statusText, body } = !request.blob ? worker.getBarerResponse(response) : {
-            status: response.status, 
+            status: response.status,
             statusText: response.statusText,
             headers: Object.fromEntries([...response.headers.entries()]),
             body: response.body,
         };
         this.request = request;
         this.raw = response;
-        this.ultraviolet = request.ultraviolet;
+        this.violet = request.violet;
         this.headers = headers;
         this.status = status;
         this.statusText = statusText;
@@ -245,8 +245,8 @@ class ResponseContext {
 };
 
 class RequestContext {
-    constructor(request, worker, ultraviolet, body = null) {
-        this.ultraviolet = ultraviolet;
+    constructor(request, worker, violet, body = null) {
+        this.violet = violet;
         this.request = request;
         this.headers = Object.fromEntries([...request.headers.entries()]);
         this.method = request.method;
@@ -276,21 +276,21 @@ class RequestContext {
         });
     };
     get url() {
-        return this.ultraviolet.meta.url;
+        return this.violet.meta.url;
     };
     set url(val) {
-        this.ultraviolet.meta.url = val;
+        this.violet.meta.url = val;
     };
     get base() {
-        return this.ultraviolet.meta.base;
+        return this.violet.meta.base;
     };
     set base(val) {
-        this.ultraviolet.meta.base = val;
+        this.violet.meta.base = val;
     };
 }
 
 function isHtml(url, contentType = '') {
-    return (Ultraviolet.mime.contentType((contentType  || url.pathname)) || 'text/html').split(';')[0] === 'text/html';
+    return (Violet.mime.contentType((contentType  || url.pathname)) || 'text/html').split(';')[0] === 'text/html';
 };
 
 class HookEvent {
@@ -313,7 +313,7 @@ class HookEvent {
         this.#returnValue = input;
         this.#intercepted = true;
     };
-};  
+};
 
 var R = typeof Reflect === 'object' ? Reflect : null
 var ReflectApply = R && typeof R.apply === 'function'
